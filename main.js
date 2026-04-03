@@ -1,11 +1,5 @@
 import { charactersAdapter } from "./adapters/characters-adapter.js";
-import {
-  getFileContent,
-  writeFileContent,
-} from "./fileManagement/filesManagement.js";
-
-// const content = getFileContent("./package.json");
-// console.log(content);
+import { writeFileContent } from "./fileManagement/filesManagement.js";
 
 // punto 2.d
 const reduceCharactersIntoNames = () => {
