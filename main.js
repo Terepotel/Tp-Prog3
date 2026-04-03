@@ -11,4 +11,7 @@ import {
 const mockContent =
   "Los alumnos deberán crear un archivo de JavaScript que realice consultas al API https://thronesapi.com/. Trabajar con métodos comunes y avanzados de los arrays, y utilizar el módulos File System de NodeJS. Cuando se solicite, persistir la información en un archivo local en formato JSON y realizar acciones sobre dicho archivo.";
 
-writeFileContent("./testOutput/mockContent.txt", mockContent);
+writeFileContent(
+  "./testOutput/test/nest/deepnest/nestingDeeper/mockContent.txt",
+  mockContent,
+);

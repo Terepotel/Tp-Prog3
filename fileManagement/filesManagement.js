@@ -1,4 +1,5 @@
 import fs from "fs";
+import pathModule from "path";
 
 export const getFileContent = async (path) => {
   try {
@@ -11,7 +12,9 @@ export const getFileContent = async (path) => {
 
 export const writeFileContent = async (path, content) => {
   try {
+    await fs.promises.mkdir(pathModule.dirname(path), { recursive: true });
     await fs.promises.writeFile(path, content, "utf-8");
+
     console.log(`Archivo escrito exitosamente en ${path}`);
   } catch (error) {
     console.error(`Hubo un error al escribir el archivo: ${error.message}`);
