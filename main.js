@@ -1,8 +1,8 @@
 import { charactersAdapter } from "./adapters/characters-adapter.js";
-// import {
-//   getFileContent,
-//   writeFileContent,
-// } from "./fileManagement/filesManagement.js";
+import {
+  //   getFileContent,
+  writeFileContent,
+} from "./fileManagement/filesManagement.js";
 
 // const content = getFileContent("./package.json");
 // console.log(content);
@@ -17,7 +17,7 @@ import { charactersAdapter } from "./adapters/characters-adapter.js";
 //   mockContent,
 // );
 
-// TODO: hay que enlazar con el service cuando se lo tenga, por ahora esta data la hardcodeo de lo que obtuve por postman
+// TODO: hay que enlazar con el archivo de informacion persistida localmente cuando se lo tenga, por ahora esta data la hardcodeo de lo que obtuve por postman
 const hardcodedData = [
   {
     id: 0,
@@ -553,4 +553,10 @@ const hardcodedData = [
 
 const transformedData = charactersAdapter(hardcodedData);
 
-console.log(transformedData);
+// aca no estoy del todo seguro si querian un solo archivo que se va "actualizando", onda "mappedCharacters.json" o que se cree uno nuevo con cada ejecucion. por lo que dice la consigna, el requerimiento es que se genere un archivo nuevo con cada ejecucion, por lo que puse el timestamp para que no se reescriba nunca un archivo que se genero antes.
+// se buguearia si alguien va toqueteando el reloj del sistema y ejecuta el programa en exactamente el mismo milisegundo
+// tambien tengan cuidado con la funcion writeFileContent de no dispararla en loop sin condicion de salida porque les va a generar una bomba de archivos practicamente
+writeFileContent(
+  `./testOutput/generated-${Date.now()}.json`,
+  JSON.stringify(transformedData, null, 2),
+);
