@@ -1,21 +1,11 @@
 import { charactersAdapter } from "./adapters/characters-adapter.js";
 import {
-  //   getFileContent,
+  getFileContent,
   writeFileContent,
 } from "./fileManagement/filesManagement.js";
 
 // const content = getFileContent("./package.json");
 // console.log(content);
-
-// ---------------------------
-
-// const mockContent =
-//   "Los alumnos deberán crear un archivo de JavaScript que realice consultas al API https://thronesapi.com/. Trabajar con métodos comunes y avanzados de los arrays, y utilizar el módulos File System de NodeJS. Cuando se solicite, persistir la información en un archivo local en formato JSON y realizar acciones sobre dicho archivo.";
-
-// writeFileContent(
-//   "./testOutput/test/nest/deepnest/nestingDeeper/mockContent.txt",
-//   mockContent,
-// );
 
 // TODO: hay que enlazar con el archivo de informacion persistida localmente cuando se lo tenga, por ahora esta data la hardcodeo de lo que obtuve por postman
 const hardcodedData = [
