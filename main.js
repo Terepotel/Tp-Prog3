@@ -1,5 +1,10 @@
 import { charactersAdapter } from "./adapters/characters-adapter.js";
 import { writeFileContent } from "./fileManagement/filesManagement.js";
+import {getPersonajeById} from  "./services/characters.js"
+
+
+//llamado 1.c
+// console.log(await getPersonajeById(10))
 
 // punto 2.d
 const reduceCharactersIntoNames = () => {
@@ -551,3 +556,4 @@ const reduceCharactersIntoNames = () => {
   );
 };
 // reduceCharactersIntoNames();
+
