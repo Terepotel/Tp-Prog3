@@ -63,11 +63,11 @@ export async function getPersonajeById(id) {
 
 // Punto 1.d
 
-export const persistCharacters = async (url) => {
+export const persistCharacters = async (url, outputTarget) => {
   try {
     const characters = await getAllCharacters(url);
     await writeFileContent(
-      "./data/characters.json",
+      outputTarget || "./data/characters.json",
       JSON.stringify(characters, null, 2),
     );
   } catch (error) {
