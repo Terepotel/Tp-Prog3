@@ -76,17 +76,23 @@ export const persistCharacters = async (url, outputTarget) => {
 };
 
 // punto 2.d
-export const reduceCharactersIntoNames = async () => {
-  const characters = JSON.parse(await getFileContent("./data/characters.json"));
+export const reduceCharactersIntoNames = async (source, output) => {
+  try {
+    const characters = JSON.parse(
+      await getFileContent(source || "./data/characters.json"),
+    );
 
-  console.log(typeof characters);
-  const transformedData = charactersAdapter(characters);
+    const transformedData = charactersAdapter(characters);
 
-  // aca no estoy del todo seguro si querian un solo archivo que se va "actualizando", onda "mappedCharacters.json" o que se cree uno nuevo con cada ejecucion. por lo que dice la consigna, el requerimiento es que se genere un archivo nuevo con cada ejecucion, por lo que puse el timestamp para que no se reescriba nunca un archivo que se genero antes.
-  // se buguearia si alguien va toqueteando el reloj del sistema y ejecuta el programa en exactamente el mismo milisegundo
-  // tambien tengan cuidado con la funcion writeFileContent de no dispararla en loop sin condicion de salida porque les va a generar una bomba de archivos practicamente
-  await writeFileContent(
-    `./data/generated-${Date.now()}.json`,
-    JSON.stringify(transformedData, null, 2),
-  );
+    // aca no estoy del todo seguro si querian un solo archivo que se va "actualizando", onda "mappedCharacters.json" o que se cree uno nuevo con cada ejecucion. por lo que dice la consigna, el requerimiento es que se genere un archivo nuevo con cada ejecucion, por lo que puse el timestamp para que no se reescriba nunca un archivo que se genero antes.
+    // se buguearia si alguien va toqueteando el reloj del sistema y ejecuta el programa en exactamente el mismo milisegundo
+    // tambien tengan cuidado con la funcion writeFileContent de no dispararla en loop sin condicion de salida porque les va a generar una bomba de archivos practicamente
+    await writeFileContent(
+      output || `./data/generated-${Date.now()}.json`,
+      JSON.stringify(transformedData, null, 2),
+    );
+  } catch (error) {
+    console.error("Error al reducir los personajes:", error);
+    throw error;
+  }
 };
