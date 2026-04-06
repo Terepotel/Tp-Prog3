@@ -124,3 +124,26 @@ export const reduceCharactersIntoNames = async (source, output) => {
     throw error;
   }
 };
+// Ejercicio 2.e - Ordenar los datos del 2.d por nombre de forma decreciente (Z → A)
+export const sortCharactersByNameDesc = async (source) => {
+  try {
+    const data = await getFileContent(source || "./data/characters.json");
+    const characters = JSON.parse(data);
+
+    const transformedData = charactersAdapter(characters);
+
+    const sorted = [...transformedData].sort((a, b) => {
+      if (a.name > b.name) return -1;
+      if (a.name < b.name) return 1;
+      return 0;
+    });
+
+    console.log("Personajes ordenados por nombre (Z → A):");
+    sorted.forEach((character) => console.log(character.name));
+
+    return sorted;
+  } catch (error) {
+    console.error("Error al ordenar los personajes:", error);
+    throw error;
+  }
+};
