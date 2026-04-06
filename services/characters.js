@@ -116,7 +116,7 @@ export const reduceCharactersIntoNames = async (source, output) => {
     // se buguearia si alguien va toqueteando el reloj del sistema y ejecuta el programa en exactamente el mismo milisegundo
     // tambien tengan cuidado con la funcion writeFileContent de no dispararla en loop sin condicion de salida porque les va a generar una bomba de archivos practicamente
     await writeFileContent(
-      output || `./data/generated-${Date.now()}.json`,
+      output || `./data/mappedCharacters.json`,
       JSON.stringify(transformedData, null, 2),
     );
   } catch (error) {
@@ -127,12 +127,10 @@ export const reduceCharactersIntoNames = async (source, output) => {
 // Ejercicio 2.e - Ordenar los datos del 2.d por nombre de forma decreciente (Z → A)
 export const sortCharactersByNameDesc = async (source) => {
   try {
-    const data = await getFileContent(source || "./data/characters.json");
+    const data = await getFileContent(source || "./data/mappedCharacters.json");
     const characters = JSON.parse(data);
 
-    const transformedData = charactersAdapter(characters);
-
-    const sorted = [...transformedData].sort((a, b) => {
+    const sorted = [...characters].sort((a, b) => {
       if (a.name > b.name) return -1;
       if (a.name < b.name) return 1;
       return 0;
