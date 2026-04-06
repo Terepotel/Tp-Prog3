@@ -6,7 +6,6 @@ import {
   getPersonajeById,
   persistCharacters,
   reduceCharactersIntoNames,
-   sortCharactersByNameDesc,
 } from "./services/characters.js";
 
 const API_URL = "https://thronesapi.com/api/v2";
@@ -75,5 +74,4 @@ await addCharactersAtStart("./data/characters.json", [
 //lamado 2.d
 await reduceCharactersIntoNames();
 
-// Ejercicio 2.e
-await sortCharactersByNameDesc();
+
