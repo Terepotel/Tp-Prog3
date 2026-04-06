@@ -103,6 +103,22 @@ export const addCharactersAtStart = async (path, newCharacters) => {
   }
 };
 
+//Punto 2.c 
+export const deleteLastCharacter = async () => {
+  try {
+    const data = await getFileContent("./data/characters.json");
+    const characters = JSON.parse(data);
+    const deletedLastCharacter = characters.pop();
+    console.log("Personaje eliminado:", deletedLastCharacter);
+    await writeFileContent("./data/characters.json", JSON.stringify(characters, null, 2));
+   
+  }
+ catch (error) {
+    console.error("Error al eliminar el último personaje:", error);
+    throw error;
+  }
+}
+
 // punto 2.d
 export const reduceCharactersIntoNames = async (source, output) => {
   try {

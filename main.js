@@ -2,6 +2,7 @@ import {
   addCharacter,
   addCharacterAtEnd,
   addCharactersAtStart,
+  deleteLastCharacter,
   getAllCharacters,
   getPersonajeById,
   persistCharacters,
@@ -72,6 +73,8 @@ await addCharactersAtStart("./data/characters.json", [
   },
 ]);
 
+//llamado 2.c
+await deleteLastCharacter();
 //lamado 2.d
 await reduceCharactersIntoNames();
 
