@@ -23,7 +23,6 @@ export async function getAllCharacters(path) {
 }
 
 // Ejercicio 1.b.
-
 export async function addCharacter(path, character) {
   try {
     const response = await fetch(`${path}/Characters`, {
