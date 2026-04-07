@@ -23,7 +23,6 @@ export async function getAllCharacters(path) {
 }
 
 // Ejercicio 1.b.
-
 export async function addCharacter(path, character) {
   try {
     const response = await fetch(`${path}/Characters`, {
@@ -103,21 +102,22 @@ export const addCharactersAtStart = async (path, newCharacters) => {
   }
 };
 
-//Punto 2.c 
+//Punto 2.c
 export const deleteLastCharacter = async () => {
   try {
     const data = await getFileContent("./data/characters.json");
     const characters = JSON.parse(data);
     const deletedLastCharacter = characters.pop();
     console.log("Personaje eliminado:", deletedLastCharacter);
-    await writeFileContent("./data/characters.json", JSON.stringify(characters, null, 2));
-   
-  }
- catch (error) {
+    await writeFileContent(
+      "./data/characters.json",
+      JSON.stringify(characters, null, 2),
+    );
+  } catch (error) {
     console.error("Error al eliminar el último personaje:", error);
     throw error;
   }
-}
+};
 
 // punto 2.d
 export const reduceCharactersIntoNames = async (source, output) => {
@@ -128,9 +128,6 @@ export const reduceCharactersIntoNames = async (source, output) => {
 
     const transformedData = charactersAdapter(characters);
 
-    // aca no estoy del todo seguro si querian un solo archivo que se va "actualizando", onda "mappedCharacters.json" o que se cree uno nuevo con cada ejecucion. por lo que dice la consigna, el requerimiento es que se genere un archivo nuevo con cada ejecucion, por lo que puse el timestamp para que no se reescriba nunca un archivo que se genero antes.
-    // se buguearia si alguien va toqueteando el reloj del sistema y ejecuta el programa en exactamente el mismo milisegundo
-    // tambien tengan cuidado con la funcion writeFileContent de no dispararla en loop sin condicion de salida porque les va a generar una bomba de archivos practicamente
     await writeFileContent(
       output || `./data/mappedCharacters.json`,
       JSON.stringify(transformedData, null, 2),
